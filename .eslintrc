@@ -1,5 +1,9 @@
 {
-  "extends": "eslint-config-egg/typescript",
+  "extends": ["eslint-config-egg/typescript"],
+  "rules": {
+    "@typescript-eslint/semi": ["warn", "never"],
+    "comma-dangle": 0
+  },
   "parserOptions": {
     "project": "./tsconfig.json"
   }
