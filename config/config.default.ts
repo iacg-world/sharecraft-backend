@@ -16,7 +16,7 @@ export default (appInfo: EggAppInfo) => {
     myLogger: {
       allowedMethod: ['POST'],
     },
-    baseUrl: 'default.url'
+    baseUrl: 'default.url',
   }
 
   config.middleware = []
@@ -25,6 +25,9 @@ export default (appInfo: EggAppInfo) => {
       enable: false,
     },
   }
+  config.logger = {
+    consoleLevel: 'DEBUG',
+  }
 
   config.view = {
     defaultViewEngine: 'nunjucks',
@@ -32,7 +35,7 @@ export default (appInfo: EggAppInfo) => {
 
   // the return config will combines to EggAppConfig
   return {
-    ...config as object,
+    ...(config as object),
     ...bizConfig,
   }
 }
