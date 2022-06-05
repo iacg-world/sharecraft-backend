@@ -19,7 +19,7 @@ export default (appInfo: EggAppInfo) => {
     baseUrl: 'default.url'
   }
 
-  config.middleware = ['myLogger']
+  config.middleware = []
   config.security = {
     csrf: {
       enable: false,
