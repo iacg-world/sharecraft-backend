@@ -11,6 +11,9 @@ export default class HomeController extends Controller {
     const { ctx, service } = this
 
     const resp = await service.dog.show()
+    // ctx.helper.success({ ctx, res: resp })
+    const res = await this.app.axiosInstance.get('/api/breeds/image/random')
+    console.log('axios', res.data)
     await ctx.render('test.nj', { url: resp.message })
   }
 }
