@@ -16,6 +16,7 @@ export default (appInfo: EggAppInfo) => {
     myLogger: {
       allowedMethod: ['POST'],
     },
+    baseUrl: 'default.url'
   }
 
   config.middleware = ['myLogger']
@@ -31,7 +32,7 @@ export default (appInfo: EggAppInfo) => {
 
   // the return config will combines to EggAppConfig
   return {
-    ...config,
+    ...config as object,
     ...bizConfig,
   }
 }
