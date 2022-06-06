@@ -8,17 +8,24 @@ export default class HomeController extends Controller {
   }
 
   public async getDog() {
-    const { ctx, service } = this
+    const { ctx } = this
 
-    const resp = await service.dog.show()
+    // const resp = await service.dog.show()
     // ctx.helper.success({ ctx, res: resp })
     // NONE，DEBUG，INFO，WARN 和 ERROR
-    const res = await this.app.axiosInstance.get('/api/breeds/image/random')
-    ctx.logger.debug('debug info')
-    ctx.logger.info('res data', res.data)
-    ctx.logger.warn('warnning')
-    ctx.logger.error(new Error('whoops'))
-    console.log('axios', res.data)
-    await ctx.render('test.nj', { url: resp.message })
+    // const res = await this.app.axiosInstance.get('/api/breeds/image/random')
+    // ctx.logger.debug('debug info')
+    // ctx.logger.info('res data', res.data)
+    // ctx.logger.warn('warnning')
+    // ctx.logger.error(new Error('whoops'))
+    // console.log('axios', res.data)
+    // await ctx.render('test.nj', { url: resp.message })
+
+    const persons = await ctx.service.dog.showPlayers()
+
+    const resp = {
+      persons,
+    }
+    ctx.helper.success({ ctx, res: resp })
   }
 }

@@ -17,6 +17,9 @@ export default (appInfo: EggAppInfo) => {
       allowedMethod: ['POST'],
     },
     baseUrl: 'default.url',
+    mongoose: {
+      url: 'mongodb://localhost:27017/test',
+    },
   }
 
   config.middleware = []
