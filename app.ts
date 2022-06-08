@@ -1,7 +1,7 @@
 import { IBoot, Application } from 'egg'
 import { createConnection } from 'mongoose'
 import * as assert from 'assert'
-
+import { join } from 'path'
 export default class AppBoot implements IBoot {
   private readonly app: Application
   constructor(app: Application) {
@@ -22,7 +22,11 @@ export default class AppBoot implements IBoot {
     this.app.config.coreMiddleware.unshift('myLogger')
   }
   async willReady() {
-    console.log('enable willready', this.app.config.coreMiddleware)
+    // console.log('enable willready', this.app.config.coreMiddleware)
+    const dir = join(this.app.config.baseDir, 'app/model')
+    this.app.loader.loadToApp(dir, 'model', {
+      caseStyle: 'upper',
+    })
   }
   async didReady() {
     // const ctx = await this.app.createAnonymousContext()
