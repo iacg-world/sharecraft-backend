@@ -9,7 +9,9 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = []
-
+  config.mongoose = {
+    url: 'mongodb://localhost:27017/test',
+  }
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
@@ -17,9 +19,6 @@ export default (appInfo: EggAppInfo) => {
       allowedMethod: ['POST'],
     },
     baseUrl: 'default.url',
-    mongoose: {
-      url: 'mongodb://localhost:27017/test',
-    },
   }
 
   config.middleware = []
