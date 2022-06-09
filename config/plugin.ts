@@ -6,9 +6,9 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-view-nunjucks',
   },
-  hello: {
+  mongoose: {
     enable: true,
-    package: 'egg-viking',
+    package: 'egg-mongoose',
   },
 }
 

@@ -10,7 +10,7 @@ export default (appInfo: EggAppInfo) => {
   // add your egg config in here
   config.middleware = []
   config.mongoose = {
-    url: 'mongodb://localhost:27017/test',
+    url: 'mongodb://localhost:27017/sharecraft',
   }
   // add your special config in here
   const bizConfig = {
