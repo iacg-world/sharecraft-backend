@@ -2,8 +2,7 @@ import 'egg'
 import { Connection } from 'mongoose'
 
 declare module 'egg' {
-  interface Application {
-    mongoose: Connection
-    model: MongooseModels
+  interface MongooseModels extends IModel {
+    [key: string]: Model<any>
   }
 }
