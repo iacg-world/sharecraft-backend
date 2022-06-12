@@ -1,5 +1,5 @@
 import { Application } from 'egg'
-
+import * as AutoIncrementFactory from 'mongoose-sequence'
 export interface UserProps {
   username: string
   password: string
@@ -14,6 +14,7 @@ export interface UserProps {
 function initUserModel(app: Application) {
   const mongoose = app.mongoose
   const Schema = mongoose.Schema
+  const AutoIncrement = AutoIncrementFactory(mongoose)
   const UserSchema = new Schema<UserProps>(
     {
       username: { type: String, unique: true, required: true },
@@ -33,6 +34,7 @@ function initUserModel(app: Application) {
       },
     },
   )
+  UserSchema.plugin(AutoIncrement, { inc_field: 'id', id: 'users_id_counter' })
   return app.mongoose.model<UserProps>('User', UserSchema)
 }
 
