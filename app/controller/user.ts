@@ -18,7 +18,12 @@ export const userErrorMessages = {
     errno: 101003,
     message: '该用户不存在或者密码错误',
   },
+  loginValidateFail: {
+    errno: 101004,
+    message: '登录校验失败',
+  },
 }
+
 export default class UserController extends Controller {
   async createByEmail() {
     const { ctx, service, app } = this
@@ -66,14 +71,19 @@ export default class UserController extends Controller {
     if (!verifyPwd) {
       return ctx.helper.error({ ctx, errorType: 'loginCheckFailInfo' })
     }
-    ctx.cookies.set('username', user.username, { encrypt: true })
+    // ctx.cookies.set('username', user.username, { encrypt: true })
+    ctx.session.username = user.username
     ctx.helper.success({ ctx, res: user.toJSON(), msg: '登录成功' })
   }
   async show() {
     const { ctx, service } = this
+    const { username } = ctx.session
     // /users/:id
-    const username = ctx.cookies.get('username', { encrypt: true })
+    // const username = ctx.cookies.get('username', { encrypt: true })
     // const userData = await service.user.findById(ctx.params.id)
+    if (!username) {
+      return ctx.helper.error({ ctx, errorType: 'loginValidateFail' })
+    }
     ctx.helper.success({ ctx, res: username })
   }
 }
