@@ -25,6 +25,7 @@ export default (appInfo: EggAppInfo) => {
       allowedMethod: ['POST'],
     },
     baseUrl: 'default.url',
+    secret: '1033581609'
   }
 
   config.middleware = []
