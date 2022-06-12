@@ -17,6 +17,7 @@ import 'egg-view';
 import 'egg-view-nunjucks';
 import 'egg-mongoose';
 import 'egg-validate';
+import 'egg-bcrypt';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -35,5 +36,6 @@ declare module 'egg' {
     nunjucks?: EggPluginItem;
     mongoose?: EggPluginItem;
     validate?: EggPluginItem;
+    bcrypt?: EggPluginItem;
   }
 }

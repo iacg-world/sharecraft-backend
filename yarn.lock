@@ -1850,6 +1850,11 @@
   "resolved" "https://registry.npmmirror.com/base64-js/-/base64-js-1.5.1.tgz"
   "version" "1.5.1"
 
+"bcryptjs@^2.4.3":
+  "integrity" "sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ=="
+  "resolved" "https://registry.npmmirror.com/bcryptjs/-/bcryptjs-2.4.3.tgz"
+  "version" "2.4.3"
+
 "binary-extensions@^2.0.0":
   "integrity" "sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA=="
   "resolved" "https://registry.npmmirror.com/binary-extensions/-/binary-extensions-2.2.0.tgz"
@@ -2980,6 +2985,13 @@
   "integrity" "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow=="
   "resolved" "https://registry.npmmirror.com/ee-first/-/ee-first-1.1.1.tgz"
   "version" "1.1.1"
+
+"egg-bcrypt@^1.1.0":
+  "integrity" "sha512-or4AUwQSF0IZxSBGNVWyEhvHVUgHR715dymREG/bLJP5aiwQDf/nv6Lbs7myWzZfBwLvbd1BkokR7dupLHhEiQ=="
+  "resolved" "https://registry.npmmirror.com/egg-bcrypt/-/egg-bcrypt-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "bcryptjs" "^2.4.3"
 
 "egg-bin@^4.11.0":
   "integrity" "sha512-ERyLsBS4JV/cZEDSHvlRpYvWsJFOZCXzz6ybhFMJ2AkLap2nMR2Yd5PfssmJesVPF1ai3aqY89EKmV5LFHdW3w=="

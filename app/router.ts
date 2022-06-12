@@ -12,4 +12,5 @@ export default (app: Application) => {
   router.get('/dog', logger, controller.home.getDog)
   router.post('/api/users/create', controller.user.createByEmail)
   router.get('/api/users/:id', logger, controller.user.show)
+  router.post('/api/users/login', controller.user.loginByEmail)
 }
