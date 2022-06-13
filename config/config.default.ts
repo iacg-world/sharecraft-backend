@@ -48,6 +48,12 @@ export default (appInfo: EggAppInfo) => {
     accessKeySecret: process.env.ALC_SECRET_KEY,
     endpoint: 'dysmsapi.aliyuncs.com',
   }
+  const giteeOauthConfig = {
+    cid: process.env.GITEE_CID,
+    secret: process.env.GITEE_SECRET,
+    redirectURL: 'http://localhost:7001/api/users/passport/gitee/callback',
+    authURL: 'https://gitee.com/oauth/token?grant_type=authorization_code',
+  }
 
   // add your special config in here
   const bizConfig = {
@@ -57,6 +63,7 @@ export default (appInfo: EggAppInfo) => {
     },
     baseUrl: 'default.url',
     aliCloudConfig,
+    giteeOauthConfig,
   }
 
   // the return config will combines to EggAppConfig

@@ -59,4 +59,21 @@ export default class UserService extends Service {
     )
     return token
   }
+  async getAccessToken(code: string) {
+    const { ctx, app } = this
+    const { cid, secret, redirectURL, authURL } = app.config.giteeOauthConfig
+    const { data } = await ctx.curl(authURL, {
+      method: 'POST',
+      contentType: 'json',
+      dataType: 'json',
+      data: {
+        code,
+        client_id: cid,
+        redirect_uri: redirectURL,
+        client_secret: secret,
+      },
+    })
+    app.logger.info(data)
+    return data
+  }
 }
