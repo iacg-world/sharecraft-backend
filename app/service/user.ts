@@ -1,6 +1,13 @@
 import { Service } from 'egg'
 import { UserProps } from '../model/user'
 import * as $Dysmsapi from '@alicloud/dysmsapi20170525'
+interface GiteeUserResp {
+  id: number
+  login: string
+  name: string
+  avatar_url: string
+  email: string
+}
 
 export default class UserService extends Service {
   public async createByEmail(payload: UserProps) {
@@ -59,6 +66,7 @@ export default class UserService extends Service {
     )
     return token
   }
+  // get access token
   async getAccessToken(code: string) {
     const { ctx, app } = this
     const { cid, secret, redirectURL, authURL } = app.config.giteeOauthConfig
@@ -74,6 +82,56 @@ export default class UserService extends Service {
       },
     })
     app.logger.info(data)
+    return data.access_token
+  }
+  // get gitee user data
+  async getGiteeUserData(access_token: string) {
+    const { ctx, app } = this
+    const { giteeUserAPI } = app.config.giteeOauthConfig
+    const { data } = await ctx.curl<GiteeUserResp>(
+      `${giteeUserAPI}?access_token=${access_token}`,
+      {
+        dataType: 'json',
+      },
+    )
     return data
+  }
+  async loginByGitee(code: string) {
+    const { ctx, app } = this
+    // 获取 access_token
+    const accessToken = await this.getAccessToken(code)
+    // 获取用户的信息
+    const user = await this.getGiteeUserData(accessToken)
+    // 检查用户信息是否存在
+    const { id, name, avatar_url, email } = user
+    const stringId = id.toString()
+    // Gitee + id
+    // Github + id
+    // WX + id
+    // 假如已经存在
+    const existUser = await this.findByUsername(`Gitee${stringId}`)
+    if (existUser) {
+      const token = app.jwt.sign(
+        { username: existUser.username },
+        app.config.jwt.secret,
+      )
+      return token
+    }
+    // 假如不存在，新建用户
+    const userCreatedData: Partial<UserProps> = {
+      oauthID: stringId,
+      provider: 'gitee',
+      username: `Gitee${stringId}`,
+      picture: avatar_url,
+      nickName: name,
+      email,
+      type: 'oauth',
+    }
+    const newUser = await ctx.model.User.create(userCreatedData)
+    const token = app.jwt.sign(
+      { username: newUser.username },
+      app.config.jwt.secret,
+    )
+    return token
   }
 }

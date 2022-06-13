@@ -53,6 +53,7 @@ export default (appInfo: EggAppInfo) => {
     secret: process.env.GITEE_SECRET,
     redirectURL: 'http://localhost:7001/api/users/passport/gitee/callback',
     authURL: 'https://gitee.com/oauth/token?grant_type=authorization_code',
+    giteeUserAPI: 'https://gitee.com/api/v5/user',
   }
 
   // add your special config in here
