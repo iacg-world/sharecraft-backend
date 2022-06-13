@@ -33,7 +33,6 @@
     "mongoose-sequence": "^5.3.1"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
