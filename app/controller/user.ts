@@ -107,12 +107,23 @@ export default class UserController extends Controller {
     // [0 - 9000) + 1000 = [1000, 10000)
     const veriCode = Math.floor(Math.random() * 9000 + 1000).toString()
     // 发送短信
-    const resp = await this.service.user.sendSMS(phoneNumber, veriCode)
-    if (resp.body.code !== 'OK') {
-      return ctx.helper.error({ ctx, errorType: 'sendVeriCodeError' })
+    // 判断是否为生产环境
+    // https://www.eggjs.org/zh-CN/basics/env#%E4%B8%8E-node_env-%E7%9A%84%E5%8C%BA%E5%88%AB
+    console.log(app.config.aliCloudConfig)
+
+    if (app.config.env === 'prod') {
+      const resp = await this.service.user.sendSMS(phoneNumber, veriCode)
+      if (resp.body.code !== 'OK') {
+        return ctx.helper.error({ ctx, errorType: 'sendVeriCodeError' })
+      }
     }
+    console.log(app.config.aliCloudConfig)
     await app.redis.set(`phoneVeriCode-${phoneNumber}`, veriCode, 'ex', 60)
-    ctx.helper.success({ ctx, msg: '验证码发送成功' })
+    ctx.helper.success({
+      ctx,
+      msg: '验证码发送成功',
+      res: app.config.env === 'dev' ? { veriCode } : null,
+    })
   }
   async loginByEmail() {
     const { ctx, service, app } = this
