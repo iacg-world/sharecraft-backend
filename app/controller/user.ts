@@ -76,50 +76,19 @@ export default class UserController extends Controller {
     // ctx.session.username = user.username
     // Registered claims 注册相关的信息
     // Public claims 公共信息: should be unique like email, address or phone_number
-    const token = sign({ username: user.username }, app.config.secret, {
+    const token = sign({ username: user.username }, app.config.jwt.secret, {
       expiresIn: 60 * 60,
     })
     ctx.helper.success({ ctx, res: { token }, msg: '登录成功' })
   }
-  getTokenValue() {
-    // JWT Header 格式
-    // Authorization:Bearer tokenXXX
-    const { ctx } = this
-    const { authorization } = ctx.header
-    // 没有这个 header 直接返回false
-    if (!ctx.header || !authorization) {
-      return false
-    }
-    if (typeof authorization === 'string') {
-      const parts = authorization.trim().split(' ')
-      if (parts.length === 2) {
-        const scheme = parts[0]
-        const credentials = parts[1]
-        if (/^Bearer$/i.test(scheme)) {
-          return credentials
-        }
-      } else {
-        return false
-      }
-    } else {
-      return false
-    }
-  }
+
   async show() {
     const { ctx, service, app } = this
     // const { username } = ctx.session
     // /users/:id
     // const username = ctx.cookies.get('username', { encrypt: true })
     // const userData = await service.user.findById(ctx.params.id)
-    const token = this.getTokenValue()
-    if (!token) {
-      return ctx.helper.error({ ctx, errorType: 'loginValidateFail' })
-    }
-    try {
-      const decoded = verify(token, app.config.secret)
-      ctx.helper.success({ ctx, res: decoded })
-    } catch (e) {
-      return ctx.helper.error({ ctx, errorType: 'loginValidateFail' })
-    }
+    const userData = await service.user.findByUsername(ctx.state.user.username)
+    ctx.helper.success({ ctx, res: userData.toJSON() })
   }
 }
