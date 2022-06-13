@@ -9,6 +9,18 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = ['customError']
+
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  }
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+  }
+  config.logger = {
+    consoleLevel: 'DEBUG',
+  }
   config.mongoose = {
     url: 'mongodb://localhost:27017/sharecraft',
   }
@@ -29,6 +41,12 @@ export default (appInfo: EggAppInfo) => {
       db: 0,
     },
   }
+  const aliCloudConfig = {
+    accessKeyId: '',
+    accessKeySecret: '',
+    endpoint: 'dysmsapi.aliyuncs.com',
+  }
+
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
@@ -36,23 +54,7 @@ export default (appInfo: EggAppInfo) => {
       allowedMethod: ['POST'],
     },
     baseUrl: 'default.url',
-    jwt: {
-      secret: '1033581609',
-    },
-  }
-
-  config.middleware = []
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  }
-  config.logger = {
-    consoleLevel: 'DEBUG',
-  }
-
-  config.view = {
-    defaultViewEngine: 'nunjucks',
+    aliCloudConfig,
   }
 
   // the return config will combines to EggAppConfig
