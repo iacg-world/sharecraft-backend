@@ -8,7 +8,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1654329281466_8642'
 
   // add your egg config in here
-  config.middleware = []
+  config.middleware = ['customError']
   config.mongoose = {
     url: 'mongodb://localhost:27017/sharecraft',
   }
@@ -17,6 +17,9 @@ export default (appInfo: EggAppInfo) => {
   }
   config.session = {
     encrypt: true,
+  }
+  config.jwt = {
+    secret: '1033581609',
   }
   // add your special config in here
   const bizConfig = {
