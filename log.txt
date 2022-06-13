@@ -82,3 +82,4 @@ Mon Jun 13 2022 10:44:54 GMT+0800 (中国标准时间) -- POST -- /api/users/log
 Mon Jun 13 2022 10:51:31 GMT+0800 (中国标准时间) -- POST -- /api/users/loginByEmail -- 171ms
 Mon Jun 13 2022 10:53:42 GMT+0800 (中国标准时间) -- POST -- /api/users/loginByEmail -- 148ms
 Mon Jun 13 2022 10:53:49 GMT+0800 (中国标准时间) -- POST -- /api/users/loginByEmail -- 3ms
+Mon Jun 13 2022 11:31:23 GMT+0800 (中国标准时间) -- POST -- /api/users/genVeriCode -- 108ms
