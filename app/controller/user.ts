@@ -154,7 +154,7 @@ export default class UserController extends Controller {
     // Registered claims 注册相关的信息
     // Public claims 公共信息: should be unique like email, address or phone_number
     const token = app.jwt.sign(
-      { username: user.username },
+      { username: user.username, _id: user._id },
       app.config.jwt.secret,
       { expiresIn: 60 * 60 },
     )

@@ -47,7 +47,7 @@ export default class UserService extends Service {
     if (user) {
       // generate token
       const token = app.jwt.sign(
-        { username: user.username },
+        { username: user.username, _id: user._id },
         app.config.jwt.secret,
       )
       return token
@@ -61,7 +61,7 @@ export default class UserService extends Service {
     }
     const newUser = await ctx.model.User.create(userCreatedData)
     const token = app.jwt.sign(
-      { username: newUser.username },
+      { username: newUser.username, _id: user._id },
       app.config.jwt.secret,
     )
     return token
@@ -112,7 +112,7 @@ export default class UserService extends Service {
     const existUser = await this.findByUsername(`Gitee${stringId}`)
     if (existUser) {
       const token = app.jwt.sign(
-        { username: existUser.username },
+        { username: existUser.username, _id: existUser._id },
         app.config.jwt.secret,
       )
       return token
@@ -129,7 +129,7 @@ export default class UserService extends Service {
     }
     const newUser = await ctx.model.User.create(userCreatedData)
     const token = app.jwt.sign(
-      { username: newUser.username },
+      { username: newUser.username, _id: newUser._id },
       app.config.jwt.secret,
     )
     return token
