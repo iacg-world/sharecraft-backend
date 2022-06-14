@@ -43,6 +43,10 @@ export default (appInfo: EggAppInfo) => {
       db: 0,
     },
   }
+  config.cors = {
+    origin: 'http://localhost:8080',
+    allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
+  }
   const aliCloudConfig = {
     accessKeyId: process.env.ALC_ACCESS_KEY,
     accessKeySecret: process.env.ALC_SECRET_KEY,
