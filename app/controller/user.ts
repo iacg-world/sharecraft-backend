@@ -193,7 +193,7 @@ export default class UserController extends Controller {
     console.log(code)
     try {
       const token = await ctx.service.user.loginByGitee(code)
-      ctx.helper.success({ ctx, res: { token } })
+      await ctx.render('success-oauth.nj', { token })
     } catch (e) {
       return ctx.helper.error({ ctx, errorType: 'giteeOauthError' })
     }
