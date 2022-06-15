@@ -11,7 +11,7 @@ export default class WorkService extends Service {
     const uuid = nanoid(6)
     const newEmptyWork: Partial<WorkProps> = {
       ...payload,
-      user: new Types.ObjectId(_id),
+      user: _id,
       author: username,
       uuid,
     }
