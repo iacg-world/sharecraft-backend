@@ -21,4 +21,5 @@ export default (app: Application) => {
   router.get('/api/users/passport/gitee', controller.user.oauth)
   router.get('/api/users/passport/gitee/callback', controller.user.oauthByGitee)
   router.post('/api/works', jwtMiddleware, controller.work.createWork)
+  router.get('/api/templates', controller.work.templateList)
 }
