@@ -20,3 +20,5 @@ test/**/*.map
 config/**/*.map
 
 .env
+uploads/
+log.txt

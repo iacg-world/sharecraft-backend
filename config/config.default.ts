@@ -1,5 +1,6 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
 import * as dovenv from 'dotenv'
+import { join } from 'path'
 dovenv.config()
 
 export default (appInfo: EggAppInfo) => {
@@ -46,6 +47,16 @@ export default (appInfo: EggAppInfo) => {
   config.cors = {
     origin: 'http://localhost:8080',
     allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
+  }
+  config.multipart = {
+    mode: 'file',
+    tmpdir: join(appInfo.baseDir, 'uploads'),
+  }
+  config.static = {
+    dir: [
+      { prefix: '/public', dir: join(appInfo.baseDir, 'app/public') },
+      { prefix: '/uploads', dir: join(appInfo.baseDir, 'uploads') },
+    ],
   }
   const aliCloudConfig = {
     accessKeyId: process.env.ALC_ACCESS_KEY,

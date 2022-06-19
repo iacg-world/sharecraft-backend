@@ -37,12 +37,14 @@
     "egg-view-nunjucks": "^2.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose-sequence": "^5.3.1",
-    "nanoid": "^3.1.30"
+    "nanoid": "^3.1.30",
+    "sharp": "^0.30.6"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.1",
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
+    "@types/sharp": "^0.30.4",
     "@types/supertest": "^2.0.0",
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",

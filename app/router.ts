@@ -20,6 +20,7 @@ export default (app: Application) => {
   router.post('/api/users/loginByPhoneNumber', controller.user.loginByCellphone)
   router.get('/api/users/passport/gitee', controller.user.oauth)
   router.get('/api/users/passport/gitee/callback', controller.user.oauthByGitee)
+
   router.post('/api/works', jwtMiddleware, controller.work.createWork)
   router.post('/api/works/copy/:id', jwtMiddleware, controller.work.copyWork)
   router.get('/api/templates', controller.work.templateList)
@@ -38,4 +39,6 @@ export default (app: Application) => {
     jwtMiddleware,
     controller.work.publishTemplate,
   )
+
+  router.post('/api/utils/uploadFile', controller.utils.fileLocalUpload)
 }
