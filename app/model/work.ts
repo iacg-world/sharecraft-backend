@@ -17,6 +17,7 @@ export interface WorkProps {
   copiedCount: number
   status?: 0 | 1 | 2
   user: ObjectId
+  latestPublishAt?: Date
 }
 
 module.exports = (app: Application) => {
@@ -37,6 +38,7 @@ module.exports = (app: Application) => {
       copiedCount: { type: Number, default: 0 },
       status: { type: Number, default: 1 },
       user: { type: Schema.Types.ObjectId, ref: 'User' },
+      latestPublishAt: { type: Date },
     },
     { timestamps: true },
   )

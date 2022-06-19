@@ -69,6 +69,7 @@ export default (appInfo: EggAppInfo) => {
     baseUrl: 'default.url',
     aliCloudConfig,
     giteeOauthConfig,
+    H5BaseURL: 'http://localhost:7001/api/pages',
   }
 
   // the return config will combines to EggAppConfig
