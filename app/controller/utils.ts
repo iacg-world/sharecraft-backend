@@ -1,8 +1,9 @@
 import { Controller } from 'egg'
 import * as sharp from 'sharp'
 import { nanoid } from 'nanoid'
-import { createWriteStream } from 'fs'
+import { createWriteStream, createReadStream } from 'fs'
 import { parse, join, extname } from 'path'
+import { pipeline } from 'stream/promises'
 export default class UtilsController extends Controller {
   async fileLocalUpload() {
     const { ctx, app } = this
@@ -54,19 +55,14 @@ export default class UtilsController extends Controller {
     )
     const target = createWriteStream(savedFilePath)
     const target2 = createWriteStream(savedThumbnailPath)
-    const savePromise = new Promise((resolve, reject) => {
-      stream.pipe(target).on('finish', resolve).on('error', reject)
-    })
+    const savePromise = pipeline(stream, target)
     const transformer = sharp().resize({ width: 300 })
-
-    const thumbnailPromise = new Promise((resolve, reject) => {
-      stream
-        .pipe(transformer)
-        .pipe(target2)
-        .on('finish', resolve)
-        .on('error', reject)
-    })
-    await Promise.all([savePromise, thumbnailPromise])
+    const thumbnailPromise = pipeline(stream, transformer, target2)
+    try {
+      await Promise.all([savePromise, thumbnailPromise])
+    } catch (e) {
+      return ctx.helper.error({ ctx, errorType: 'imageUploadFail' })
+    }
     ctx.helper.success({
       ctx,
       res: {
