@@ -51,4 +51,41 @@ export default class WorkController extends Controller {
     const res = await ctx.service.work.getList(listCondition)
     ctx.helper.success({ ctx, res })
   }
+  async checkPermission(id: number) {
+    const { ctx } = this
+    // 获取当前用户的 ID
+    const userId = ctx.state.user._id
+    // 查询作品信息
+    const certianWork = await this.ctx.model.Work.findOne({ id })
+    if (!certianWork) {
+      return false
+    }
+    // 检查是否相等，特别注意转换成字符串
+    return certianWork.user.toString() === userId
+  }
+  async update() {
+    const { ctx } = this
+    const { id } = ctx.params
+    const permission = await this.checkPermission(id)
+    if (!permission) {
+      return ctx.helper.error({ ctx, errorType: 'workNoPermissonFail' })
+    }
+    const payload = ctx.request.body
+    const res = await this.ctx.model.Work.findOneAndUpdate({ id }, payload, {
+      new: true,
+    }).lean()
+    ctx.helper.success({ ctx, res })
+  }
+  async delete() {
+    const { ctx } = this
+    const { id } = ctx.params
+    const permission = await this.checkPermission(id)
+    if (!permission) {
+      return ctx.helper.error({ ctx, errorType: 'workNoPermissonFail' })
+    }
+    const res = await this.ctx.model.Work.findOneAndDelete({ id })
+      .select('_id id title')
+      .lean()
+    ctx.helper.success({ ctx, res })
+  }
 }
