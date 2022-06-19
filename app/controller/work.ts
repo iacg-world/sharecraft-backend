@@ -20,6 +20,32 @@ export default class WorkController extends Controller {
     const workData = await service.work.createEmptyWork(ctx.request.body)
     ctx.helper.success({ ctx, res: workData })
   }
+  async copyWork() {
+    const { ctx } = this
+    const { id } = ctx.params
+    try {
+      const res = await ctx.service.work.copyWork(parseInt(id))
+      ctx.helper.success({ ctx, res })
+    } catch (e) {
+      return ctx.helper.error({ ctx, errorType: 'workNoPublicFail' })
+    }
+  }
+  @checkPermission('Work', 'workNoPermissionFail')
+  async myWork() {
+    const { ctx } = this
+    const { id } = ctx.params
+    const res = await this.ctx.model.Work.findOne({ id }).lean()
+    ctx.helper.success({ ctx, res })
+  }
+  async template() {
+    const { ctx } = this
+    const { id } = ctx.params
+    const res = await this.ctx.model.Work.findOne({ id }).lean()
+    if (!res.isPublic || !res.isTemplate) {
+      return ctx.helper.error({ ctx, errorType: 'workNoPublicFail' })
+    }
+    ctx.helper.success({ ctx, res })
+  }
   async myList() {
     const { ctx } = this
     const userId = ctx.state.user._id
