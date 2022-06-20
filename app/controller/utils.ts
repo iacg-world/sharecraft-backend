@@ -4,6 +4,8 @@ import { nanoid } from 'nanoid'
 import { createWriteStream, createReadStream } from 'fs'
 import { parse, join, extname } from 'path'
 import { pipeline } from 'stream/promises'
+import * as sendToWormhole from 'stream-wormhole'
+
 export default class UtilsController extends Controller {
   async fileLocalUpload() {
     const { ctx, app } = this
@@ -70,5 +72,29 @@ export default class UtilsController extends Controller {
         thumbnailUrl: this.pathToURL(savedThumbnailPath),
       },
     })
+  }
+
+  async uploadToOSS() {
+    const { ctx, app } = this
+    const stream = await ctx.getFileStream()
+    // logo-backend /imooc-test/**.ext
+    const savedOSSPath = join(
+      'iacg-test',
+      nanoid(6) + extname(stream.filename),
+    )
+    try {
+      const result = await ctx.oss.put(savedOSSPath, stream)
+      app.logger.info(result)
+      const { name, url } = result
+      ctx.helper.success({ ctx, res: { name, url } })
+    } catch (e) {
+      await sendToWormhole(stream)
+      ctx.helper.error({ ctx, errorType: 'imageUploadFail' })
+    }
+    // get stream saved to local file
+    // file upload to OSS
+    // delete local file
+
+    // get stream upload to OSS
   }
 }

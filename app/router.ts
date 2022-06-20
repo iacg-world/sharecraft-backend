@@ -40,5 +40,5 @@ export default (app: Application) => {
     controller.work.publishTemplate,
   )
 
-  router.post('/api/utils/uploadFile', controller.utils.fileUploadByStream)
+  router.post('/api/utils/uploadFile', controller.utils.uploadToOSS)
 }
