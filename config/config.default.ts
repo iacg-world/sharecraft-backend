@@ -58,6 +58,10 @@ export default (appInfo: EggAppInfo) => {
       { prefix: '/uploads', dir: join(appInfo.baseDir, 'uploads') },
     ],
   }
+  config.multipart = {
+    whitelist: ['.png', '.jpg', '.gif', '.webp'],
+    fileSize: '1mb',
+  }
   config.oss = {
     client: {
       accessKeyId: process.env.ALC_ACCESS_KEY || '',
