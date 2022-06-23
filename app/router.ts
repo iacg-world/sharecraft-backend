@@ -34,6 +34,6 @@ export default (app: Application) => {
   router.post('/works/publish-template/:id', controller.work.publishTemplate)
 
   router.post('/utils/uploadFile', controller.utils.uploadToOSS)
-  router.post('/utils/testBusBoy', controller.utils.testBusBoy)
+  // router.post('/utils/testBusBoy', controller.utils.testBusBoy)
   router.post('/utils/upload-img', controller.utils.uploadMutipleFiles)
 }

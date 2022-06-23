@@ -64,6 +64,12 @@ export default (appInfo: EggAppInfo) => {
     whitelist: ['.png', '.jpg', '.gif', '.webp'],
     fileSize: '1mb',
   }
+
+  const aliCloudConfig = {
+    accessKeyId: process.env.ALC_ACCESS_KEY,
+    accessKeySecret: process.env.ALC_SECRET_KEY,
+    endpoint: 'dysmsapi.aliyuncs.com',
+  }
   config.oss = {
     client: {
       accessKeyId: process.env.ALC_ACCESS_KEY || '',
@@ -71,11 +77,6 @@ export default (appInfo: EggAppInfo) => {
       bucket: 'sharecraft-backend',
       endpoint: 'oss-cn-shanghai.aliyuncs.com',
     },
-  }
-  const aliCloudConfig = {
-    accessKeyId: process.env.ALC_ACCESS_KEY,
-    accessKeySecret: process.env.ALC_SECRET_KEY,
-    endpoint: 'dysmsapi.aliyuncs.com',
   }
   const giteeOauthConfig = {
     cid: process.env.GITEE_CID,
