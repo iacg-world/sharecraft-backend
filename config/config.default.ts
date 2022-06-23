@@ -34,7 +34,9 @@ export default (appInfo: EggAppInfo) => {
     encrypt: true,
   }
   config.jwt = {
-    secret: '1033581609',
+    enable: true,
+    secret: process.env.JWT_SECRET || '',
+    match: ['/api/users/getUserInfo', '/api/works', '/api/utils/upload-img'],
   }
   config.redis = {
     client: {
