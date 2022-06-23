@@ -95,40 +95,40 @@ export default class UtilsController extends Controller {
 
     // get stream upload to OSS
   }
-  // uploadFileUseBusBoy() {
-  //   const { ctx, app } = this
-  //   return new Promise<string[]>(resolve => {
-  //     const busboy = new Busboy({ headers: ctx.req.headers as any })
-  //     const results: string[] = []
-  //     busboy.on('file', (fieldname, file, filename) => {
-  //       app.logger.info(fieldname, file, filename)
-  //       const uid = nanoid(6)
-  //       const savedFilePath = join(
-  //         app.config.baseDir,
-  //         'uploads',
-  //         uid + extname(filename),
-  //       )
-  //       file.pipe(createWriteStream(savedFilePath))
-  //       file.on('end', () => {
-  //         results.push(savedFilePath)
-  //       })
-  //     })
-  //     busboy.on('field', (fieldname, val) => {
-  //       app.logger.info(fieldname, val)
-  //     })
-  //     busboy.on('finish', () => {
-  //       app.logger.info('finished')
-  //       resolve(results)
-  //     })
-  //     ctx.req.pipe(busboy)
-  //   })
-  // }
-  // async testBusBoy() {
-  //   const { ctx, app } = this
-  //   const results = await this.uploadFileUseBusBoy()
-  //   ctx.helper.success({ ctx, res: results })
-  // }
-  async uploadMutipleFiles() {
+  uploadFileUseBusBoy() {
+    const { ctx, app } = this
+    return new Promise<string[]>(resolve => {
+      const busboy = new Busboy({ headers: ctx.req.headers as any })
+      const results: string[] = []
+      busboy.on('file', (fieldname, file, filename) => {
+        app.logger.info(fieldname, file, filename)
+        const uid = nanoid(6)
+        const savedFilePath = join(
+          app.config.baseDir,
+          'uploads',
+          uid + extname(filename),
+        )
+        file.pipe(createWriteStream(savedFilePath))
+        file.on('end', () => {
+          results.push(savedFilePath)
+        })
+      })
+      busboy.on('field', (fieldname, val) => {
+        app.logger.info(fieldname, val)
+      })
+      busboy.on('finish', () => {
+        app.logger.info('finished')
+        resolve(results)
+      })
+      ctx.req.pipe(busboy)
+    })
+  }
+  async testBusBoy() {
+    const { ctx, app } = this
+    const results = await this.uploadFileUseBusBoy()
+    ctx.helper.success({ ctx, res: results })
+  }
+  async uploadMultipleFiles() {
     const { ctx, app } = this
     const { fileSize } = app.config.multipart
     const parts = ctx.multipart({ limits: { fileSize: fileSize as number } })

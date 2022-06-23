@@ -25,7 +25,7 @@
     "@alicloud/dysmsapi20170525": "^2.0.9",
     "@alicloud/openapi-client": "^0.4.1",
     "axios": "^0.27.2",
-    "busboy": "^1.6.0",
+    "busboy": "^0.3.1",
     "dotenv": "^16.0.1",
     "egg": "^2.6.1",
     "egg-bcrypt": "^1.1.0",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/ali-oss": "^6.16.4",
-    "@types/busboy": "^1.5.0",
+    "@types/busboy": "^0.3.2",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/mocha": "^2.2.40",
     "@types/node": "^16.11.7",
