@@ -6,6 +6,7 @@ import { parse, join, extname } from 'path'
 import { pipeline } from 'stream/promises'
 import * as sendToWormhole from 'stream-wormhole'
 import * as Busboy from 'busboy'
+import { FileStream } from '../../typings/app'
 
 export default class UtilsController extends Controller {
   async fileLocalUpload() {
@@ -126,5 +127,31 @@ export default class UtilsController extends Controller {
     const { ctx, app } = this
     const results = await this.uploadFileUseBusBoy()
     ctx.helper.success({ ctx, res: results })
+  }
+  async uploadMutipleFiles() {
+    const { ctx, app } = this
+    const parts = ctx.multipart()
+    // { urls: [xxx, xxx ]}
+    const urls: string[] = []
+    let part: FileStream | string[]
+    while ((part = await parts())) {
+      if (Array.isArray(part)) {
+        app.logger.info(part)
+      } else {
+        try {
+          const savedOSSPath = join(
+            'sharecraft-test',
+            nanoid(6) + extname(part.filename),
+          )
+          const result = await ctx.oss.put(savedOSSPath, part)
+          const { url } = result
+          urls.push(url)
+        } catch (e) {
+          await sendToWormhole(part)
+          ctx.helper.error({ ctx, errorType: 'imageUploadFail' })
+        }
+      }
+    }
+    ctx.helper.success({ ctx, res: { urls } })
   }
 }
