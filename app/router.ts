@@ -41,4 +41,5 @@ export default (app: Application) => {
   )
 
   router.post('/api/utils/uploadFile', controller.utils.uploadToOSS)
+  router.post('/api/utils/testBusBoy', controller.utils.testBusBoy)
 }
