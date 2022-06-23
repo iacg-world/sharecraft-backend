@@ -58,6 +58,14 @@ export default (appInfo: EggAppInfo) => {
       { prefix: '/uploads', dir: join(appInfo.baseDir, 'uploads') },
     ],
   }
+  config.oss = {
+    client: {
+      accessKeyId: process.env.ALC_ACCESS_KEY || '',
+      accessKeySecret: process.env.ALC_SECRET_KEY || '',
+      bucket: 'sharecraft-backend',
+      endpoint: 'oss-cn-shanghai.aliyuncs.com',
+    },
+  }
   const aliCloudConfig = {
     accessKeyId: process.env.ALC_ACCESS_KEY,
     accessKeySecret: process.env.ALC_SECRET_KEY,
