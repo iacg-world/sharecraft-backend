@@ -11,6 +11,10 @@ import { FileStream } from '../../typings/app'
 import { createSSRApp } from 'vue'
 import { renderToString, renderToNodeStream } from '@vue/server-renderer'
 export default class UtilsController extends Controller {
+  pathToURL(path: string) {
+    const { app } = this
+    return path.replace(app.config.baseDir, app.config.baseUrl)
+  }
   async fileLocalUpload() {
     const { ctx, app } = this
     const { filepath } = ctx.request.files[0]
@@ -37,10 +41,6 @@ export default class UtilsController extends Controller {
       ctx,
       res: { url, thumbnailUrl: thumbnailUrl ? thumbnailUrl : url },
     })
-  }
-  pathToURL(path: string) {
-    const { app } = this
-    return path.replace(app.config.baseDir, app.config.baseUrl)
   }
 
   async fileUploadByStream() {

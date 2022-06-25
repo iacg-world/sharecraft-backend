@@ -3,14 +3,7 @@ import { Application } from 'egg'
 export default (app: Application) => {
   const { controller, router } = app
 
-  const logger = app.middleware.myLogger(
-    {
-      allowedMethod: ['GET'],
-    },
-    app,
-  )
   router.get('/', controller.home.index)
-  router.get('/dog', logger, controller.home.getDog)
   router.prefix('/api')
   router.post('/users/create', controller.user.createByEmail)
   router.get('/users/getUserInfo', controller.user.show)
@@ -34,7 +27,7 @@ export default (app: Application) => {
   router.post('/works/publish-template/:id', controller.work.publishTemplate)
 
   router.post('/utils/uploadFile', controller.utils.uploadToOSS)
-  router.post('/utils/testBusBoy', controller.utils.testBusBoy)
+  // router.post('/utils/testBusBoy', controller.utils.testBusBoy)
   router.post('/utils/upload-img', controller.utils.uploadMultipleFiles)
 
   router.get('/pages/:idAndUuid', controller.utils.renderH5Page)

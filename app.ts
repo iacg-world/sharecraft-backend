@@ -29,7 +29,7 @@ export default class AppBoot implements IBoot {
     // 这是应用层修改配置的最后时机
     // console.log('config', this.app.config.baseUrl)
     // console.log('enable middleware', this.app.config.coreMiddleware)
-    this.app.config.coreMiddleware.unshift('myLogger')
+    this.app.config.coreMiddleware.push('customError')
   }
   async willReady() {
     // console.log('enable willready', this.app.config.coreMiddleware)
@@ -42,6 +42,6 @@ export default class AppBoot implements IBoot {
     // const ctx = await this.app.createAnonymousContext()
     // const res = await ctx.service.test.sayHi('lc')
     // console.log('did ready res', res)
-    // console.log('final middleware', this.app.middleware)
+    console.log('final middleware', this.app.middleware)
   }
 }
