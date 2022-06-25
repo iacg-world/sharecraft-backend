@@ -8,11 +8,9 @@ logs/
 .DS_Store
 .vscode
 *.swp
-*.js
 !.autod.conf.js
 !.prettierrc.js
 
-app/**/*.js
 test/**/*.js
 config/**/*.js
 app/**/*.map
@@ -23,3 +21,4 @@ config/**/*.map
 uploads/
 log.txt
 testWork.json
+app/public
