@@ -22,3 +22,4 @@ config/**/*.map
 .env
 uploads/
 log.txt
+testWork.json
