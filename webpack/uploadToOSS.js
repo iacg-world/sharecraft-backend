@@ -3,6 +3,8 @@ const OSS = require('ali-oss')
 const path = require('path')
 const dotenv = require('dotenv')
 const fs = require('fs')
+const { pathJoin } = require('./utils')
+
 
 // 设置环境变量
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
@@ -22,7 +24,7 @@ async function run() {
   const files = publicFiles.filter(f => f !== 'page.nj')
   const res = await Promise.all(
     files.map(async fileName => {
-      const savedOSSPath = path.join('h5-assets', fileName)
+      const savedOSSPath = pathJoin('h5-assets', fileName)
       const filePath = path.join(publicPath, fileName)
       const result = await client.put(savedOSSPath, filePath)
       const { url } = result
