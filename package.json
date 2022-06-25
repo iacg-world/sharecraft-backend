@@ -20,7 +20,8 @@
     "autod": "autod",
     "lint": "eslint . --ext .ts",
     "clean": "ets clean",
-    "build:template": "npx webpack --config webpack/webpack.config.js",
+    "build:template:dev": "npx webpack --config webpack/webpack.config.js",
+    "build:template:prod": "npx webpack --config webpack/webpack.config.js --env production && npm run upload",
     "upload": "node webpack/uploadToOSS.js"
   },
   "dependencies": {
