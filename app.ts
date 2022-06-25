@@ -42,6 +42,6 @@ export default class AppBoot implements IBoot {
     // const ctx = await this.app.createAnonymousContext()
     // const res = await ctx.service.test.sayHi('lc')
     // console.log('did ready res', res)
-    console.log('final middleware', this.app.middleware)
+    // console.log('final middleware', this.app.middleware)
   }
 }
