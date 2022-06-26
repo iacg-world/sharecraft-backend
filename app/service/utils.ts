@@ -1,6 +1,6 @@
 import { Service } from 'egg'
 import { createSSRApp } from 'vue'
-import LegoComponents from 'lego-components'
+import IacgBlocks from 'iacg-block'
 import { renderToString, renderToNodeStream } from '@vue/server-renderer'
 export default class UserService extends Service {
   propsToStyle(props = {}) {
@@ -53,7 +53,7 @@ export default class UserService extends Service {
       },
       template: '<final-page :components="components"></final-page>',
     })
-    vueApp.use(LegoComponents)
+    vueApp.use(IacgBlocks)
     const html = await renderToString(vueApp)
     const bodyStyle = this.propsToStyle(content && content.props)
     return {

@@ -40,7 +40,7 @@
     "egg-scripts": "^2.6.0",
     "egg-validate": "^2.0.2",
     "egg-view-nunjucks": "^2.3.0",
-    "iacg-block": "^1.0.1",
+    "iacg-block": "^1.0.3",
     "jsonwebtoken": "^8.5.1",
     "lego-components": "^0.1.7",
     "mongoose-sequence": "^5.3.1",
