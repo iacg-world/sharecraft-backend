@@ -2,7 +2,10 @@ import { Application } from 'egg'
 import { ObjectId } from 'mongoose'
 import * as AutoIncrementFactory from 'mongoose-sequence'
 import { UserProps } from './user'
-
+interface ChannelProps {
+  name: string
+  id: string
+}
 export interface WorkProps {
   id?: number
   uuid: string
@@ -18,9 +21,10 @@ export interface WorkProps {
   status?: 0 | 1 | 2
   user: ObjectId
   latestPublishAt?: Date
+  channels?: ChannelProps[]
 }
 
-module.exports = (app: Application) => {
+function initWorkModel(app: Application) {
   const mongoose = app.mongoose
   const Schema = mongoose.Schema
   const AutoIncrement = AutoIncrementFactory(mongoose)
@@ -38,6 +42,7 @@ module.exports = (app: Application) => {
       copiedCount: { type: Number, default: 0 },
       status: { type: Number, default: 1 },
       user: { type: Schema.Types.ObjectId, ref: 'User' },
+      channels: { type: Array },
       latestPublishAt: { type: Date },
     },
     { timestamps: true },
@@ -45,3 +50,5 @@ module.exports = (app: Application) => {
   WorkSchema.plugin(AutoIncrement, { inc_field: 'id', id: 'works_id_counter' })
   return mongoose.model<WorkProps>('Work', WorkSchema)
 }
+
+export default initWorkModel

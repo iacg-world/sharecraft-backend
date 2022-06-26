@@ -13,7 +13,6 @@ export default (app: Application) => {
   router.get('/users/passport/gitee', controller.user.oauth)
   router.get('/users/passport/gitee/callback', controller.user.oauthByGitee)
 
-
   router.get('/templates', controller.work.templateList)
   router.get('/templates/:id', controller.work.template)
 
@@ -31,4 +30,9 @@ export default (app: Application) => {
   router.post('/utils/upload-img', controller.utils.uploadMultipleFiles)
 
   router.get('/pages/:idAndUuid', controller.utils.renderH5Page)
+
+  router.post('/channel', controller.work.createChannel)
+  router.get('/channel/getWorkChannels/:id', controller.work.getWorkChannel)
+  router.patch('/channel/update/:id', controller.work.updateChannelName)
+  router.delete('/channel/:id', controller.work.deleteChannel)
 }
