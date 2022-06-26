@@ -38,10 +38,10 @@ export default class UserService extends Service {
       })
     })
   }
-  async renderToPageData(query: { id: string; uuid: string }) {
+  async renderToPageData(query: { id: number; uuid: string }) {
     const work = await this.ctx.model.Work.findOne(query).lean()
     if (!work) {
-      throw new Error('work not exsit')
+      throw new Error('work not exit')
     }
     const { title, desc, content } = work
     this.px2vw(content && content.components)

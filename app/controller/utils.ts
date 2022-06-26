@@ -167,11 +167,11 @@ export default class UtilsController extends Controller {
   }
 
   splitIdAndUuid(str = '') {
-    const result = { id: '', uuid: '' }
+    const result = { id: -1, uuid: '' }
     if (!str) return result
     const firstDashIndex = str.indexOf('-')
     if (firstDashIndex < 0) return result
-    result.id = str.slice(0, firstDashIndex)
+    result.id = Number(str.slice(0, firstDashIndex))
     result.uuid = str.slice(firstDashIndex + 1)
     return result
   }
