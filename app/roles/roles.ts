@@ -21,6 +21,7 @@ export default function defineRoles(
         user: user._id,
       })
       can('delete', 'Work', { user: user._id })
+      can('publish', 'Work', { user: user._id })
       // channels, 创建，更新和删除属于自己的 channel
       can('create', 'Channel', ['name', 'workId'], { user: user._id })
       can('read', 'Channel', { user: user._id })
