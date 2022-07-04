@@ -1,2 +1,2 @@
-import 'iacg-block/dist/iacg-block.css'
+import 'lego-components/dist/lego-components.css'
 console.log('hello lcc')
