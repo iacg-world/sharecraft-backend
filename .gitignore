@@ -22,3 +22,4 @@ uploads/
 log.txt
 testWork.json
 app/public
+/.docker-volumes
