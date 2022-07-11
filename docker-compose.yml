@@ -8,16 +8,17 @@ services:
       - '$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/'
     ports:
       - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-  # sharecraft-backend:
-  #   depends_on:
-  #     - craft-mongo
-  #   build:
-  #     context: . # 当前目录
-  #     dockerfile: Dockerfile
-  #   image: sharecraft-backend
-  #   container_name: sharecraft-backend
-  #   ports:
-  #     - 7001:7001
+    env_file:
+      - .env
+  sharecraft-backend:
+    depends_on:
+      - craft-mongo
+    build:
+      context: . # 当前目录
+      dockerfile: Dockerfile
+    image: sharecraft-backend
+    container_name: sharecraft-backend
+    ports:
+      - 7001:7001
+    env_file:
+      - .env
