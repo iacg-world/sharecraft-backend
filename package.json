@@ -1,6 +1,6 @@
 {
   "name": "sharecraft-backend",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "sharecraft 服务端",
   "private": true,
   "egg": {
