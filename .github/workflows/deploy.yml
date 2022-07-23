@@ -1,0 +1,39 @@
+name: Deploy app to server
+on: [push]
+jobs:
+  deploy-and-restart:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout 代码
+      - uses: actions/checkout@v2
+      # 创建 env 文件
+      - name: 'create env file'
+        run: |
+          touch .env
+          echo ALC_ACCESS_KEY=${{ secrets.ALC_ACCESS_KEY }} >> .env
+          echo ALC_SECRET_KEY=${{ secrets.ALC_SECRET_KEY }} >> .env
+          echo GITEE_CID=${{ secrets.GITEE_CID }} >> .env
+          echo GITEE_SECRET=${{ secrets.GITEE_SECRET }} >> .env
+          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+          echo MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }} >> .env
+          echo MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD }} >> .env
+          echo MONGO_DB_USERNAME=${{ secrets.MONGO_DB_USERNAME }} >> .env
+          echo MONGO_DB_PASSWORD=${{ secrets.MONGO_DB_PASSWORD }} >> .env
+          echo REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} >> .env
+          echo PING_ENV=${{ secrets.PING_ENV }} >> .env
+      # 拷贝必须文件到一个文件夹，包括 .env, docker-compose-online.yml, mongo-entrypoint
+      - name: 'copy necessary files in to one folder'
+        run: |
+          mkdir sharecraft-backend
+          cp .env docker-compose-online.yml sharecraft-backend
+          cp -r mongo-entrypoint sharecraft-backend
+          ls -a sharecraft-backend
+      # 通过 scp 拷贝必须文件到服务器
+      - name: 'copy sharecraft-backend folder via scp'
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PWD }}
+          source: 'sharecraft-backend'
+          target: '~/project'
