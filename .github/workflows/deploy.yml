@@ -50,7 +50,7 @@ jobs:
           # 启动服务 docker-compose up
           # 清理工作
           script: |
-            docker login --username=${{secrets.ACR_USERNAME}} --password=${{secrets.ACR_PASSWORD}} registry.cn-hangzhou.aliyuncs.com
+            docker login --username=${{secrets.ACR_USERNAME}} --password-stdin=${{secrets.ACR_PASSWORD}} registry.cn-hangzhou.aliyuncs.com
             cd ~/project/sharecraft-backend/
             docker-compose -f docker-compose-online.yml down
             docker-compose -f docker-compose-online.yml up -d
