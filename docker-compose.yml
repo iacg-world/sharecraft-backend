@@ -19,15 +19,15 @@ services:
       - 6378:6379
     env_file:
       - .env
-  sharecraft-backend:
+  craft-backend:
     depends_on:
       - craft-mongo
       - craft-redis
     build:
       context: . # 当前目录
       dockerfile: Dockerfile
-    image: sharecraft-backend
-    container_name: sharecraft-backend
+    image: craft-backend
+    container_name: craft-backend
     ports:
       - 7001:7001
     env_file:
