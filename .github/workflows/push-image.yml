@@ -1,0 +1,25 @@
+name: build image, push to ACR
+on: [push]
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout 代码
+      - uses: actions/checkout@v2
+      # 创建 env 文件
+      - run: touch .env
+      - run: echo ALC_ACCESS_KEY=${{ secrets.ALC_ACCESS_KEY }} >> .env
+      - run: echo ALC_SECRET_KEY=${{ secrets.ALC_SECRET_KEY }} >> .env
+      # 使用阿里云ACR 完成 docker login
+      - name: Login to Aliyun Container Registry (ACR)
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: https://registry.cn-hangzhou.aliyuncs.com
+          region-id: cn-hangzhou
+          username: '${{ secrets.ACR_USERNAME }}'
+          password: '${{ secrets.ACR_PASSWORD }}'
+      # 使用正确的阿里云 tag 进行 docker build
+      - name: Build image for Docker
+        run: docker build --tag "registry.cn-hangzhou.aliyuncs.com/supercll/craft:0.0.2" .
+      - name: Push Image to ACR
+        run: docker push registry.cn-hangzhou.aliyuncs.com/supercll/craft:0.0.2
