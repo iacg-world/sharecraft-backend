@@ -10,9 +10,19 @@ services:
       - 27017:27017
     env_file:
       - .env
+  craft-redis:
+    image: redis:6
+    container_name: craft-redis
+    command: >
+      --requirepass ${REDIS_PASSWORD}
+    ports:
+      - 6379:6379
+    env_file:
+      - .env
   sharecraft-backend:
     depends_on:
       - craft-mongo
+      - craft-redis
     build:
       context: . # 当前目录
       dockerfile: Dockerfile

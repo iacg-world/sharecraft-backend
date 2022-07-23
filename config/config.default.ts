@@ -24,17 +24,17 @@ export default (appInfo: EggAppInfo) => {
   config.logger = {
     consoleLevel: 'DEBUG',
   }
-  // config.mongoose = {
-  //   url: 'mongodb://localhost:27017/sharecraft',
-  // }
-  // config.redis = {
-  //   client: {
-  //     port: 6379,
-  //     host: '127.0.0.1',
-  //     password: '',
-  //     db: 0,
-  //   },
-  // }
+  config.mongoose = {
+    url: 'mongodb://localhost:27017/sharecraft',
+  }
+  config.redis = {
+    client: {
+      port: 6379,
+      host: '127.0.0.1',
+      password: '',
+      db: 0,
+    },
+  }
   config.bcrypt = {
     saltRounds: 10,
   }
