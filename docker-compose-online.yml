@@ -1,0 +1,34 @@
+version: '3'
+services:
+  craft-mongo:
+    image: mongo
+    container_name: craft-mongo
+    volumes:
+      - '.docker-volumes/mongo/data:/data/db'
+      - '$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/'
+    ports:
+      - 27016:27017
+    env_file:
+      - .env
+  craft-redis:
+    image: redis:6
+    container_name: craft-redis
+    command: >
+      --requirepass ${REDIS_PASSWORD}
+    ports:
+      - 6377:6379
+    env_file:
+      - .env
+  sharecraft-backend:
+    depends_on:
+      - craft-mongo
+      - craft-redis
+    build:
+      context: . # 当前目录
+      dockerfile: Dockerfile
+    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:0.0.1
+    container_name: sharecraft-backend
+    ports:
+      - 7002:7001
+    env_file:
+      - .env
