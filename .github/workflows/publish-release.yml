@@ -47,9 +47,7 @@ jobs:
           find: '{{tag}}'
           replace: ${{github.ref_name}}
           include: 'docker-compose-online.yml'
-      - run: |
-        cat docker-compose-online.yml
-        echo ${{github.ref_name}}
+      - run: cat docker-compose-online.yml
       # 拷贝必须文件到一个文件夹，包括 .env, docker-compose-online.yml, mongo-entrypoint
       - name: 'copy necessary files in to one folder'
         run: |
@@ -65,10 +63,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PWD }}
           source: 'sharecraft-backend'
-          target: '~/project'
-        run: |
-          cd ~/project
-          ls -a sharecraft-backend
+          target: '~'
       # 通过 SSH 登录然后重启服务
       - name: executing ssh and restart docker
         uses: appleboy/ssh-action@master
@@ -83,7 +78,7 @@ jobs:
           # 清理工作
           script: |
             docker login --username=${{secrets.ACR_USERNAME}} --password=${{secrets.ACR_PASSWORD}} registry.cn-hangzhou.aliyuncs.com
-            cd ~/project/sharecraft-backend/
+            cd ~/sharecraft-backend/
             docker-compose -f docker-compose-online.yml down
             docker-compose -f docker-compose-online.yml up -d
             rm -rf .env

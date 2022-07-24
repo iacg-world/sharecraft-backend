@@ -26,7 +26,7 @@ services:
     build:
       context: . # 当前目录
       dockerfile: Dockerfile
-    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:v.1.0.72
+    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:{{tag}}
     container_name: sharecraft-backend
     ports:
       - 7002:7001
