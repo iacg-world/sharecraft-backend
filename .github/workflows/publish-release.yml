@@ -64,6 +64,9 @@ jobs:
           password: ${{ secrets.SSH_PWD }}
           source: 'sharecraft-backend'
           target: '~/project'
+        run: |
+          cd ~/project
+          ls -a sharecraft-backend
       # 通过 SSH 登录然后重启服务
       - name: executing ssh and restart docker
         uses: appleboy/ssh-action@master

@@ -14,8 +14,8 @@ export default () => {
     client: {
       port: 6379,
       host: 'craft-redis',
-      password: process.env.REDIS_PASSWORD
-    }
+      password: process.env.REDIS_PASSWORD,
+    },
   }
   return config
 }
