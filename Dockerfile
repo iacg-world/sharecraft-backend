@@ -5,5 +5,7 @@ COPY package.json package-lock.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
 RUN npm run tsc
+RUN npm run build:template:prod
+RUN npm run upload
 EXPOSE 7001
 CMD npx egg-scripts start --title=sharecraft-backend
