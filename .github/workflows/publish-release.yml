@@ -54,6 +54,7 @@ jobs:
           mkdir sharecraft-backend 
           cp .env docker-compose-online.yml sharecraft-backend
           cp -r mongo-entrypoint sharecraft-backend
+          cp -r Dockerfile sharecraft-backend
           ls -a sharecraft-backend
       # 通过 scp 拷贝必须文件到服务器
       - name: 'copy sharecraft-backend folder via scp'
