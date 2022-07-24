@@ -47,7 +47,9 @@ jobs:
           find: '{{tag}}'
           replace: ${{github.ref_name}}
           include: 'docker-compose-online.yml'
-      - run: cat docker-compose-online.yml
+      - run: |
+        cat docker-compose-online.yml
+        echo ${{github.ref_name}}
       # 拷贝必须文件到一个文件夹，包括 .env, docker-compose-online.yml, mongo-entrypoint
       - name: 'copy necessary files in to one folder'
         run: |
