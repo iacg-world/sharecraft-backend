@@ -22,7 +22,8 @@
     "clean": "ets clean",
     "build:template:dev": "npx webpack --config webpack/webpack.config.js",
     "build:template:prod": "npx webpack --config webpack/webpack.config.js --env production && npm run upload",
-    "upload": "node webpack/uploadToOSS.js"
+    "upload": "node webpack/uploadToOSS.js",
+    "release": "release-it"
   },
   "dependencies": {
     "@alicloud/dysmsapi20170525": "^2.0.9",
@@ -48,6 +49,7 @@
     "mongoose": "^5.13.14",
     "mongoose-sequence": "^5.3.1",
     "nanoid": "^3.1.30",
+    "release-it": "^15.1.3",
     "stream-wormhole": "^1.1.0",
     "vue": "^3.2.37"
   },
