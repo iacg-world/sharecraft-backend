@@ -79,8 +79,9 @@ jobs:
           script: |
             docker login --username=${{secrets.ACR_USERNAME}} --password=${{secrets.ACR_PASSWORD}} registry.cn-hangzhou.aliyuncs.com
             cd ~/project/sharecraft-backend/
-            rm -rf .docker-volumes
+            docker pull registry.cn-hangzhou.aliyuncs.com/supercll/craft:${{github.ref_name}}
             docker-compose -f docker-compose-online.yml down
+            rm -rf .docker-volumes
             docker-compose -f docker-compose-online.yml up -d
             rm -rf .env
             docker logout registry.cn-hangzhou.aliyuncs.com

@@ -23,6 +23,12 @@ services:
   sharecraft-backend:
     image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:{{tag}}
     container_name: sharecraft-backend
+    depends_on: # 依赖的服务
+      - craft-mongo
+      - craft-redis
+    build:
+      context: . # 当前目录
+      dockerfile: Dockerfile
     ports:
       - 7002:7001
     env_file:
