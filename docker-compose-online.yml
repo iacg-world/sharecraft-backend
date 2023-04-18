@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
   sharecraft-backend:
-    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:${{github.ref_name}}
+    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:{{tag}}
     container_name: sharecraft-backend
     ports:
       - 7002:7001
