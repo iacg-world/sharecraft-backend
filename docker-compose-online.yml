@@ -1,14 +1,15 @@
 version: '3'
+# 启动的服务
 services:
   craft-mongo:
-    image: mongo
+    image: mongo:5
     container_name: craft-mongo
     volumes:
-      - '.docker-volumes/mongo/data:/data/db'
-      - '$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/'
+      - '.docker-volumes/mongo/data:/data/db' # 持久化地址
+      - '$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/' # 
     ports:
       - 27016:27017
-    env_file:
+    env_file: # 环境变量文件
       - .env
   craft-redis:
     image: redis:6
@@ -20,7 +21,7 @@ services:
     env_file:
       - .env
   sharecraft-backend:
-    depends_on:
+    depends_on: # 依赖的服务
       - craft-mongo
       - craft-redis
     build:
