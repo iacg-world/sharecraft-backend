@@ -21,13 +21,7 @@ services:
     env_file:
       - .env
   sharecraft-backend:
-    depends_on: # 依赖的服务
-      - craft-mongo
-      - craft-redis
-    build:
-      context: . # 当前目录
-      dockerfile: Dockerfile
-    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:{{tag}}
+    image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:${{github.ref_name}}
     container_name: sharecraft-backend
     ports:
       - 7002:7001
