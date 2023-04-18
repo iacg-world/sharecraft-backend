@@ -19,7 +19,7 @@ const plugin: EggPlugin = {
     package: 'egg-bcrypt',
   },
   jwt: {
-    enable: false,
+    enable: true,
     package: 'egg-jwt',
   },
   redis: {
