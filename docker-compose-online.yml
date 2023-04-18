@@ -1,7 +1,7 @@
 version: '3'
 services:
   craft-mongo:
-    image: mongo:5.0.16
+    image: mongo
     container_name: craft-mongo
     volumes:
       - '.docker-volumes/mongo/data:/data/db'
