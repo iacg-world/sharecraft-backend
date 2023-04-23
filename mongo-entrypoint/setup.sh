@@ -19,15 +19,15 @@ db.createCollection('works')
 db.works.insertMany([
   {
     id: 19,
-    title: '1024 程序员日',
-    desc: '1024 程序员日',
-    author: '185****2625',
-    coverImg: 'http://static-dev.imooc-lego.com/imooc-test/sZHlgv.png',
+    title: '萤火之森',
+    desc: '萤火之森',
+    author: '173****1960',
+    coverImg: 'https://sharecraft-backend.oss-cn-shanghai.aliyuncs.com/sharecraft-test/20180421210121_KddAy.jpeg',
     copiedCount: 737,
     isHot: true,
     isTemplate: true,
     isPublic: true,
-    createdAt: '2020-11-26T09:27:19.000Z',
+    createdAt: '2022-11-26T09:27:19.000Z',
   }
 ])
 EOF
