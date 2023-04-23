@@ -2,7 +2,7 @@ version: '3'
 # 启动的服务
 services:
   craft-mongo:
-    image: mongo
+    image: mongo:latest
     container_name: craft-mongo
     volumes:
       - '.docker-volumes/mongo/data:/data/db' # 持久化地址
