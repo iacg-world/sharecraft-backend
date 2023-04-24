@@ -33,8 +33,8 @@ export default class UserService extends Service {
     // 配置参数
     const sendSMSRequest = new $Dysmsapi.SendSmsRequest({
       phoneNumbers: phoneNumber,
-      signName: '阿里云短信测试',
-      templateCode: 'SMS_154950909',
+      signName: 'sharecraft',
+      templateCode: 'SMS_276371857',
       templateParam: `{\"code\":\"${veriCode}\"}`,
     })
     const resp = await app.ALClient.sendSms(sendSMSRequest)
