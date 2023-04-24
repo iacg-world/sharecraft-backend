@@ -62,7 +62,7 @@ export default class UserController extends Controller {
     if (app.config.env === 'prod') {
       const resp = await this.service.user.sendSMS(phoneNumber, veriCode)
       if (resp.body.code !== 'OK') {
-        return ctx.helper.error({ ctx, errorType: 'sendVeriCodeError' })
+        return ctx.helper.error({ ctx, msg: resp.body.message, errorType: 'sendVeriCodeError' })
       }
     }
     console.log(app.config.aliCloudConfig)

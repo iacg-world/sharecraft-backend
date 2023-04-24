@@ -9,6 +9,7 @@ interface ErrorRespType {
   ctx: Context
   errorType: GlobalErrorTypes
   error?: any
+  msg?: string
 }
 
 export default {
@@ -20,11 +21,11 @@ export default {
     }
     ctx.status = 200
   },
-  error({ ctx, error, errorType }: ErrorRespType) {
+  error({ ctx, error, errorType, msg = '' }: ErrorRespType) {
     const { message, errno } = globalErrorMessages[errorType]
     ctx.body = {
       errno,
-      message,
+      message: message + msg,
       ...(error && { error }),
     }
     ctx.status = 200
