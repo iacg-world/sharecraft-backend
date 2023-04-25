@@ -47,7 +47,7 @@ export default (appInfo: EggAppInfo) => {
     match: [
       '/api/users/getUserInfo',
       '/api/works',
-      // '/api/utils/upload-img',
+      '/api/utils/upload-img',
       '/api/channel',
     ],
   }
