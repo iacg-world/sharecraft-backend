@@ -35,4 +35,6 @@ export default (app: Application) => {
   router.get('/channel/getWorkChannels/:id', controller.work.getWorkChannel)
   router.patch('/channel/update/:id', controller.work.updateChannelName)
   router.delete('/channel/:id', controller.work.deleteChannel)
+
+  router.post('/monitor/upload', controller.monitor.upload)
 }

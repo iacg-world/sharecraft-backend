@@ -1,3 +1,5 @@
+FROM python:3.7.16
+RUN pip install pyodps
 FROM node:16-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
