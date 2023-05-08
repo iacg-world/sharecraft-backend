@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
   python: 
-    image: python3.7
+    image: python:3.7
     container_name: python
     command: pip install pyodps
   sharecraft-backend:
