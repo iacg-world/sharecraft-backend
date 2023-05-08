@@ -23,6 +23,9 @@ services:
   sharecraft-backend:
     image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:{{tag}}
     container_name: sharecraft-backend
+    build:
+      context: .
+      dockerfile: Dockerfile-py
     depends_on: # 依赖的服务
       - craft-mongo
       - craft-redis
