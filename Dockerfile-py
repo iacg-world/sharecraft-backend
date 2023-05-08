@@ -1,3 +1,4 @@
 FROM python:3.7
 RUN pip install pyodps
 WORKDIR /usr/src/app
+CMD python /usr/src/monitor/connect.py
