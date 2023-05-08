@@ -20,17 +20,12 @@ services:
       - 6377:6379
     env_file:
       - .env
-  python: 
-    image: python:3.7
-    container_name: python
-    command: pip install pyodps
   sharecraft-backend:
     image: registry.cn-hangzhou.aliyuncs.com/supercll/craft:{{tag}}
     container_name: sharecraft-backend
     depends_on: # 依赖的服务
       - craft-mongo
       - craft-redis
-      - python
     ports:
       - 7002:7001
     env_file:
