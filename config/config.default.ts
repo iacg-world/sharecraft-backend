@@ -46,7 +46,7 @@ export default (appInfo: EggAppInfo) => {
     secret: process.env.JWT_SECRET || '',
     match: [
       '/api/users/getUserInfo',
-      // '/api/works',
+      '/api/works',
       '/api/utils/upload-img',
       '/api/channel',
     ],
