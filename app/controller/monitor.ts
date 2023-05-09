@@ -62,9 +62,9 @@ export default class MonitorController extends Controller {
         sql = `${sql}"${url}",`
         sql = `${sql}${args},`
         sql = `${sql}"${eventType}",`
-        sql = `${sql}"${userId}",`
-        sql = `${sql}"${visitorId}",`
-        sql = `${sql}"${modId}"`
+        // sql = `${sql}"${userId}",`
+        // sql = `${sql}"${visitorId}",`
+        // sql = `${sql}"${modId}"`
         sql = `${sql})`
         console.log(sql)
         const ret = execSync('python ' + PYTHON_CONNECT_SCRIPT_PATH + ' "' + encodeURIComponent(sql) + '"') // Buffer
