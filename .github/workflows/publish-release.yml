@@ -28,6 +28,8 @@ jobs:
           echo MONGO_DB_USERNAME=${{ secrets.MONGO_DB_USERNAME }} >> .env
           echo MONGO_DB_PASSWORD=${{ secrets.MONGO_DB_PASSWORD }} >> .env
           echo REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }} >> .env
+          echo MONITOR_ACCESS_KEY=${{ secrets.MONITOR_ACCESS_KEY }} >> .env
+          echo MONITOR_SECRET_KEY=${{ secrets.MONITOR_SECRET_KEY }} >> .env
       # 使用阿里云ACR 完成 docker login
       - name: Login to Aliyun Container Registry (ACR)
         uses: aliyun/acr-login@v1
