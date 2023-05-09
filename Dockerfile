@@ -9,5 +9,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk add --no-cache python3
 RUN apk add py3-pip
 RUN pip install pyodps
+RUN pip install python-dotenv
 EXPOSE 7001
 CMD npx egg-scripts start --title=sharecraft-backend

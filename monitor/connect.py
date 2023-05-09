@@ -1,10 +1,11 @@
 from odps import ODPS
 import sys
 import urllib
-import os
+from dotenv import dotenv_values
 
-AccessKey = os.getenv('MONITOR_ACCESS_KEY')
-secret = os.getenv('MONITOR_SECRET_KEY')
+env_variables = dotenv_values('../.env')
+AccessKey = env_variables['MONITOR_ACCESS_KEY']
+secret = env_variables['MONITOR_SECRET_KEY']
 
 o = ODPS(AccessKey, secret, 'iacg',endpoint='http://service.cn-shanghai.maxcompute.aliyun.com/api')
 
