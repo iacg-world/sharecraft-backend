@@ -73,7 +73,6 @@ export default class UserController extends Controller {
       res: app.config.env === 'local' ? { veriCode } : null,
     })
   }
-  @inputValidate(userCreateRules, 'loginValidateFail')
   async loginByEmail() {
     const { ctx, service, app } = this
     // 根据 username 取得用户信息
@@ -81,12 +80,12 @@ export default class UserController extends Controller {
     const user = await service.user.findByUsername(username)
     // 检查用户是否存在
     if (!user) {
-      return ctx.helper.error({ ctx, errorType: 'loginCheckFailInfo' })
+      return ctx.helper.error({ ctx, errorType: 'loginUserCheckFailInfo' })
     }
     const verifyPwd = await ctx.compare(password, user.password)
     // 验证密码是否成功
     if (!verifyPwd) {
-      return ctx.helper.error({ ctx, errorType: 'loginCheckFailInfo' })
+      return ctx.helper.error({ ctx, errorType: 'loginPasswdCheckFailInfo' })
     }
     // ctx.cookies.set('username', user.username, { encrypt: true })
     // ctx.session.username = user.username

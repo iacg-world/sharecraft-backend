@@ -9,32 +9,36 @@ export const userErrorMessages = {
     message: '该邮箱已经被注册，请直接登录',
   },
   // 用户不存在或者密码错误
-  loginCheckFailInfo: {
+  loginUserCheckFailInfo: {
     errno: 101003,
-    message: '该用户不存在或者密码错误',
+    message: '您还未注册哦~',
+  },
+  loginPasswdCheckFailInfo: {
+    errno: 101004,
+    message: '密码错啦~',
   },
   loginValidateFail: {
-    errno: 101004,
+    errno: 101005,
     message: '登录校验失败',
   },
   // 发送短信验证码过于频繁
   sendVeriCodeFrequentlyFailInfo: {
-    errno: 101005,
+    errno: 101006,
     message: '请勿频繁获取短信验证码',
   },
   // 登录时，验证码不正确
   loginVeriCodeIncorrectFailInfo: {
-    errno: 101006,
+    errno: 101007,
     message: '验证码不正确',
   },
   // 验证码发送失败
   sendVeriCodeError: {
-    errno: 101007,
+    errno: 101008,
     message: '验证码发送失败',
   },
   // gitee 授权出错
   giteeOauthError: {
-    errno: 101008,
+    errno: 101009,
     message: 'gitee 授权出错',
   },
 }
