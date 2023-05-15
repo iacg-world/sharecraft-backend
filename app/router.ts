@@ -23,7 +23,7 @@ export default (app: Application) => {
   router.patch('/works/:id', controller.work.update)
   router.delete('/works/:id', controller.work.delete)
   router.post('/works/publish/:id', controller.work.publishWork)
-  router.post('/works/publish-template/:id', controller.work.publishTemplate)
+  router.post('/works/publish-template/:id/:isPublic', controller.work.publishTemplate)
 
   router.post('/utils/uploadFile', controller.utils.uploadToOSS)
   // router.post('/utils/testBusBoy', controller.utils.testBusBoy)
