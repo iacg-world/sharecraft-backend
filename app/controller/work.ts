@@ -172,7 +172,7 @@ export default class WorkController extends Controller {
   @checkPermission('Work', 'workNoPermissionFail', { action: 'publish' })
   async publish(isTemplate: boolean) {
     const { ctx } = this
-    const url = await this.service.work.publish(ctx.params.id, isTemplate)
+    const url = await this.service.work.publish(ctx.params.id, isTemplate, parseInt(ctx.params.isPublic))
     ctx.helper.success({ ctx, res: { url } })
   }
   async publishWork() {
