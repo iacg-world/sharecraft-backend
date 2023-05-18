@@ -13,9 +13,12 @@
       rel="stylesheet"
       href="//cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css"
     />
+    <script>
+      window.COMPONENT_DATA = {{ components | safe }}
+    </script>
   </head>
 
   <body style="{{ bodyStyle }}">
-    {{html | safe}}
+    <div id="app">{{html | safe}}</div>
   </body>
 </html>

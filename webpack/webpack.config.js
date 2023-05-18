@@ -20,6 +20,11 @@ module.exports = env => {
         ? 'http://sharecraft-backend.oss-cn-shanghai.aliyuncs.com/h5-assets/'
         : '/public/',
     },
+    resolve: {
+      alias: {
+        vue: 'vue/dist/vue.esm-bundler',
+      },
+    },
     module: {
       rules: [
         {

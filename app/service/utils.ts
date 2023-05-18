@@ -60,6 +60,7 @@ export default class UserService extends Service {
       html,
       title,
       desc,
+      components: JSON.stringify((content && content.components) || []),
       bodyStyle,
     }
   }
