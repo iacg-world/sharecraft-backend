@@ -70,7 +70,7 @@ export default class MonitorController extends Controller {
         const ret = execSync('python ' + PYTHON_CONNECT_SCRIPT_PATH + ' "' + encodeURIComponent(sql) + '"') // Buffer
         console.log(ret.toString())
 
-        ctx.body = {
+        const res = {
           appId,
           pageId,
           timestamp,
@@ -78,17 +78,20 @@ export default class MonitorController extends Controller {
           url,
           eventType,
         }
+        ctx.helper.success({ ctx, res, msg: '上报成功', })
       } else {
         ctx.body = {
-          code: -1,
-          msg: '上传参数不全，请补充',
+          errno: -1,
+          message: '上传参数不全，请补充',
         }
+        ctx.status = 200
       }
     } else {
       ctx.body = {
-        code: -1,
-        msg: 'upload failed',
+        errno: -1,
+        message: 'upload failed',
       }
+      ctx.status = 200
     }
   }
 
