@@ -53,7 +53,7 @@ export default (appInfo: EggAppInfo) => {
   }
 
   config.cors = {
-    origin: 'http://localhost:8080',
+    origin: 'https://sharecraft.lc404.cn',
     allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
   }
   // config.multipart = {
