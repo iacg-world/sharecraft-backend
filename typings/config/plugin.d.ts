@@ -20,7 +20,6 @@ import 'egg-validate';
 import 'egg-bcrypt';
 import 'egg-jwt';
 import 'egg-redis';
-import 'egg-cors';
 import 'egg-oss';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
@@ -43,7 +42,6 @@ declare module 'egg' {
     bcrypt?: EggPluginItem;
     jwt?: EggPluginItem;
     redis?: EggPluginItem;
-    cors?: EggPluginItem;
     oss?: EggPluginItem;
   }
 }
