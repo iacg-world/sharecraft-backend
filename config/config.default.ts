@@ -14,7 +14,6 @@ export default (appInfo: EggAppInfo) => {
   // config.middleware = ['customError']
 
   config.security = {
-    domainWhiteList: ['http://localhost:8080', 'https://sharecraft.lc404.cn'],
     csrf: {
       enable: false,
     },
@@ -53,12 +52,11 @@ export default (appInfo: EggAppInfo) => {
     ],
   }
 
-  config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
-    allowHeaders: 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
-    exposeHeaders: 'Content-Length,Content-Range,Authorization',
-  }
+  // config.cors = {
+  //   allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
+  //   allowHeaders: 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
+  //   exposeHeaders: 'Content-Length,Content-Range,Authorization',
+  // }
   // config.multipart = {
   //   mode: 'file',
   //   tmpdir: join(appInfo.baseDir, 'uploads'),
