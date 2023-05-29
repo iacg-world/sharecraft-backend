@@ -17,7 +17,7 @@ module.exports = env => {
       path: buildFileDest,
       filename: 'bundle.[hash].js',
       publicPath: env.production
-        ? 'http://sharecraft-backend.oss-cn-shanghai.aliyuncs.com/h5-assets/'
+        ? 'https://sharecraft-backend.oss-cn-shanghai.aliyuncs.com/h5-assets/'
         : '/public/',
     },
     resolve: {

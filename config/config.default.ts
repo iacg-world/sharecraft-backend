@@ -82,6 +82,7 @@ export default (appInfo: EggAppInfo) => {
       accessKeySecret: process.env.ALC_SECRET_KEY || '',
       bucket: 'sharecraft-backend',
       endpoint: 'oss-accelerate.aliyuncs.com',
+      secure: true,
     },
   }
   const giteeOauthConfig = {
