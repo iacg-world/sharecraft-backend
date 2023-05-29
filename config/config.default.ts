@@ -71,7 +71,7 @@ export default (appInfo: EggAppInfo) => {
   }
   config.multipart = {
     whitelist: ['.png', '.jpg', '.gif', '.webp'],
-    fileSize: '1mb',
+    fileSize: '5mb',
   }
 
   const aliCloudConfig = {
