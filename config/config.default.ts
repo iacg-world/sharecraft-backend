@@ -52,10 +52,10 @@ export default (appInfo: EggAppInfo) => {
     ],
   }
 
-  // config.cors = {
-  //   origin: 'https://sharecraft.lc404.cn',
-  //   allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
-  // }
+  config.cors = {
+    origin: 'http://localhost:8080,https://sharecraft.lc404.cn',
+    allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
+  }
   // config.multipart = {
   //   mode: 'file',
   //   tmpdir: join(appInfo.baseDir, 'uploads'),
