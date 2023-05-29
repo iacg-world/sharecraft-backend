@@ -55,6 +55,8 @@ export default (appInfo: EggAppInfo) => {
   config.cors = {
     origin: 'http://localhost:8080,https://sharecraft.lc404.cn',
     allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
+    allowHeaders: 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
+    exposeHeaders: 'Content-Length,Content-Range,Authorization',
   }
   // config.multipart = {
   //   mode: 'file',
