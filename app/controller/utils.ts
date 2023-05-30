@@ -148,7 +148,7 @@ export default class UtilsController extends Controller {
           )
           const result = await ctx.oss.put(savedOSSPath, part)
           const { url } = result
-          urls.push(url.replace('sharecraft-backend.oss-cn-shanghai.aliyuncs.com', 'oss.lc404.cn'))
+          urls.push(url.replace('sharecraft-backend.oss-accelerate.aliyuncs.com', 'oss.lc404.cn'))
           if (part.truncated) {
             await ctx.oss.delete(savedOSSPath)
             return ctx.helper.error({
