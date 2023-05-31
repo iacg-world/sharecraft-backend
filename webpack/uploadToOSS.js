@@ -29,7 +29,8 @@ async function run() {
       const filePath = path.join(publicPath, fileName)
       const result = await client.put(savedOSSPath, filePath)
       const { url } = result
-      return url
+      const myUrl = url.replace('sharecraft-backend.oss-accelerate.aliyuncs.com', 'oss.lc404.cn')
+      return myUrl
     }),
   )
   console.log('上传成功', res)
