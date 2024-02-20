@@ -32,7 +32,7 @@ jobs:
           echo MONITOR_SECRET_KEY=${{ secrets.MONITOR_SECRET_KEY }} >> .env
       # 使用阿里云ACR 完成 docker login
       - name: Login to Aliyun Container Registry (ACR)
-        uses: aliyun/acr-login@v1.0.6
+        uses: aliyun/acr-login@v1
         with:
           login-server: https://registry.cn-hangzhou.aliyuncs.com
           region-id: cn-hangzhou
