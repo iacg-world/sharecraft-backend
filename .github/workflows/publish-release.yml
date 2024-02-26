@@ -88,5 +88,4 @@ jobs:
             docker pull registry.cn-hangzhou.aliyuncs.com/supercll/craft:${{github.ref_name}}
             docker-compose -f docker-compose-online.yml down
             docker-compose -f docker-compose-online.yml up -d
-            rm -rf .env
             docker logout registry.cn-hangzhou.aliyuncs.com
