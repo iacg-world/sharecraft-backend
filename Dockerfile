@@ -5,8 +5,7 @@ COPY package.json package-lock.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
 RUN npm run tsc
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-RUN apk add --no-cache python3=3.8
+RUN apk add --no-cache python3=3.7
 RUN apk add py3-pip
 RUN pip install pyodps
 RUN pip install python-dotenv
