@@ -5,7 +5,8 @@ COPY package.json package-lock.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
 RUN npm run tsc
-RUN apk add --no-cache python3=3.7
+RUN echo -e 'https://mirrors.aliyun.com/alpine/v3.13/main \nhttps://mirrors.aliyun.com/alpine/v3.13/community' >> /etc/apk/repositories
+RUN apk add --no-cache python3
 RUN apk add py3-pip
 RUN pip install pyodps
 RUN pip install python-dotenv
