@@ -6,7 +6,8 @@ COPY package.json package-lock.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
 RUN npm run tsc
-RUN echo -e 'https://mirrors.aliyun.com/alpine/v3.10/main \nhttps://mirrors.aliyun.com/alpine/v3.10/community' > /etc/apk/repositories
+RUN echo -e 'https://mirrors.aliyun.com/alpine/v3.14/main/ \nhttps://mirrors.aliyun.com/alpine/v3.14/community/' > /etc/apk/repositories
+RUN apk update
 RUN apk add --no-cache python3
 RUN apk add py3-pip
 RUN pip install pyodps
