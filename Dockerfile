@@ -1,11 +1,13 @@
 FROM node:16-alpine
+USER root
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json package-lock.json /usr/src/app/
 RUN npm install
 COPY . /usr/src/app
 RUN npm run tsc
-# RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+# RUN echo -e 'https://mirrors.aliyun.com/alpine/v3.14/main/ \nhttps://mirrors.aliyun.com/alpine/v3.14/community/' > /etc/apk/repositories
+# RUN apk update && apk upgrade
 # RUN apk add --no-cache python3
 # RUN apk add py3-pip
 # RUN pip install pyodps
