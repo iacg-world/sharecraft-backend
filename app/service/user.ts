@@ -17,6 +17,7 @@ export default class UserService extends Service {
 
     const userCreatedData: Partial<UserProps> = {
       username,
+      nickName: username.replace(/(\w{1,3})\w+(\w{1,2}@\w+\.\w+)/, '$1***$2'),
       password: hashPassword,
       email: username,
     }
