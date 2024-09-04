@@ -21,7 +21,7 @@ export default class WorkService extends Service {
     const newEmptyWork: Partial<WorkProps> = {
       ...payload,
       user: new Types.ObjectId(_id),
-      author: username,
+      author: this.service.utils.encryptName(username),
       uuid,
     }
     return ctx.model.Work.create(newEmptyWork)
@@ -37,7 +37,7 @@ export default class WorkService extends Service {
     const { _id, username } = ctx.state.user
     const newWork: WorkProps = {
       user: _id,
-      author: username,
+      author: this.service.utils.encryptName(username),
       uuid,
       coverImg,
       copiedCount: 0,

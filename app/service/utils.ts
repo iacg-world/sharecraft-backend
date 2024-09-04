@@ -64,4 +64,13 @@ export default class UserService extends Service {
       bodyStyle,
     }
   }
+  encryptName(name = '') {
+    if (/^1[3456789]\d{9}/.test(name)) {
+      return name.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
+    } else if (/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(name)) {
+      return name.replace(/(\w{1,3})\w+(\w{1,2}@\w+\.\w+)/, '$1***$2')
+    }
+    return name
+
+  }
 }
