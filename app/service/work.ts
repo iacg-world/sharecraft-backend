@@ -15,13 +15,13 @@ export default class WorkService extends Service {
   async createEmptyWork(payload) {
     const { ctx } = this
     // 拿到对应的 user id
-    const { username, _id } = ctx.state.user
+    const { nickName, _id } = ctx.state.user
     // 拿到一个独一无二的 URL id
     const uuid = nanoid(6)
     const newEmptyWork: Partial<WorkProps> = {
       ...payload,
       user: new Types.ObjectId(_id),
-      author: username,
+      author: nickName,
       uuid,
     }
     return ctx.model.Work.create(newEmptyWork)
@@ -34,10 +34,10 @@ export default class WorkService extends Service {
     }
     const uuid = nanoid(6)
     const { content, title, desc, coverImg, id, copiedCount } = copiedWork
-    const { _id, username } = ctx.state.user
+    const { _id, nickName } = ctx.state.user
     const newWork: WorkProps = {
       user: _id,
-      author: username,
+      author: nickName,
       uuid,
       coverImg,
       copiedCount: 0,
