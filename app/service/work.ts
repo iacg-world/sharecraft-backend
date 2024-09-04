@@ -34,10 +34,10 @@ export default class WorkService extends Service {
     }
     const uuid = nanoid(6)
     const { content, title, desc, coverImg, id, copiedCount } = copiedWork
-    const { _id, nickName } = ctx.state.user
+    const { _id, username } = ctx.state.user
     const newWork: WorkProps = {
       user: _id,
-      author: nickName,
+      author: username,
       uuid,
       coverImg,
       copiedCount: 0,
