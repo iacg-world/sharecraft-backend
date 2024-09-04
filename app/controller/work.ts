@@ -129,7 +129,7 @@ export default class WorkController extends Controller {
     }
     const listCondition: IndexCondition = {
       select: 'id copiedCount coverImg desc title user isHot isTemplate isPublic createdAt',
-      populate: { path: 'user', select: 'username nickName picture' },
+      populate: { path: 'user', select: 'nickName picture' },
       find: findConditon,
       ...(pageIndex && { pageIndex: parseInt(pageIndex) }),
       ...(pageSize && { pageSize: parseInt(pageSize) }),
@@ -142,7 +142,7 @@ export default class WorkController extends Controller {
     const { pageIndex, pageSize } = ctx.query
     const listCondition: IndexCondition = {
       select: 'id copiedCount coverImg desc title user isHot isTemplate isPublic createdAt',
-      populate: { path: 'user', select: 'username nickName picture' },
+      populate: { path: 'user', select: 'nickName picture' },
       find: { isPublic: true, isTemplate: true },
       ...(pageIndex && { pageIndex: parseInt(pageIndex) }),
       ...(pageSize && { pageSize: parseInt(pageSize) }),
