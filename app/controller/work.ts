@@ -125,7 +125,7 @@ export default class WorkController extends Controller {
     const findConditon = {
       user: userId,
       ...(title && { title: { $regex: title, $options: 'i' } }),
-      ...(isTemplate && { isTemplate: !!parseInt(isTemplate) }),
+      ...(parseInt(isTemplate) && { isTemplate: !!parseInt(isTemplate) }),
     }
     const listCondition: IndexCondition = {
       select: 'id author copiedCount coverImg desc title user isHot isTemplate isPublic createdAt',
