@@ -29,7 +29,7 @@ export default class WorkService extends Service {
   async copyWork(wid: number) {
     const { ctx } = this
     const copiedWork = await this.ctx.model.Work.findOne({ id: wid })
-    if (!copiedWork || !copiedWork.isPublic) {
+    if (!copiedWork) {
       throw new Error('can not be copied')
     }
     const uuid = nanoid(6)
