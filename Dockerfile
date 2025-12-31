@@ -2,7 +2,7 @@ FROM node:22-alpine
 USER root
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY package.json package-lock.json /usr/src/app/
+COPY package.json pnpm-lock.yaml /usr/src/app/
 RUN npm install -g pnpm
 RUN pnpm install
 COPY . /usr/src/app
