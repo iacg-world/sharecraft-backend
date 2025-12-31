@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import * as assert from 'node:assert'
 import { app } from 'egg-mock/bootstrap'
 
 describe('test/app/controller/home.test.ts', () => {

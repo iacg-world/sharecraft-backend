@@ -1,7 +1,7 @@
 
 
 import { Controller } from 'egg'
-import { execSync } from 'child_process'
+import { execSync } from 'node:child_process'
 import path = require('path')
 
 const PYTHON_CONNECT_SCRIPT_PATH = path.resolve(__dirname, '../../monitor/connect.py')

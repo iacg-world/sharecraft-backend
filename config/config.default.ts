@@ -1,6 +1,6 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
 import * as dovenv from 'dotenv'
-import { join } from 'path'
+import { join } from 'node:path'
 dovenv.config()
 
 export default (appInfo: EggAppInfo) => {

@@ -1,5 +1,5 @@
 import { Context, Application, EggAppConfig } from 'egg'
-import { appendFileSync } from 'fs'
+import { appendFileSync } from 'node:fs'
 export default (options: EggAppConfig['myLogger'], app: Application) => {
   return async (ctx: Context, next: () => Promise<any>) => {
     // console.log('options', options)
