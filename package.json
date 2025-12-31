@@ -26,8 +26,10 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@alicloud/dysmsapi20170525": "^2.0.9",
-    "@alicloud/openapi-client": "^0.4.1",
+    "@alicloud/dypnsapi20170525": "2.0.0",
+    "@alicloud/openapi-client": "^0.4.15",
+    "@alicloud/tea-typescript": "^1.7.1",
+    "@alicloud/tea-util": "^1.4.9",
     "@casl/ability": "^5.4.4",
     "axios": "^0.27.2",
     "busboy": "^0.3.1",

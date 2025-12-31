@@ -1,6 +1,8 @@
 import { Service } from 'egg'
 import { UserProps } from '../model/user'
-import * as $Dysmsapi from '@alicloud/dysmsapi20170525'
+import Dypnsapi20170525, * as $Dypnsapi20170525 from '@alicloud/dypnsapi20170525'
+import { RuntimeOptions } from '@alicloud/tea-util'
+import { Config } from '@alicloud/credentials'
 interface GiteeUserResp {
   id: number
   login: string
@@ -10,6 +12,15 @@ interface GiteeUserResp {
 }
 
 export default class UserService extends Service {
+  public createClient(): Dypnsapi20170525 {
+    const credentialsConfig = new Config({
+      type: 'access_key',
+      endpoint: 'dypnsapi.aliyuncs.com',
+      accessKeyId: process.env.ALC_ACCESS_KEY,
+      accessKeySecret: process.env.ALC_SECRET_KEY,
+    })
+    return new Dypnsapi20170525(credentialsConfig)
+  }
   public async createByEmail(payload: UserProps) {
     const { ctx } = this
     const { username, password } = payload
@@ -30,16 +41,28 @@ export default class UserService extends Service {
     return this.ctx.model.User.findOne({ username })
   }
   async sendSMS(phoneNumber: string, veriCode: string) {
+    const client = this.createClient()
     const { app } = this
     // 配置参数
-    const sendSMSRequest = new $Dysmsapi.SendSmsRequest({
-      phoneNumbers: phoneNumber,
-      signName: 'sharecraft',
-      templateCode: 'SMS_461065303',
-      templateParam: `{\"code\":\"${veriCode}\"}`,
+    const sendSMSRequest = new $Dypnsapi20170525.SendSmsVerifyCodeRequest({
+      signName: '速通互联验证码',
+      templateCode: 100001,
+      phoneNumber,
+      templateParam: `{\"code\":\"${veriCode}\", \"min\":\"5\"}`,
     })
-    const resp = await app.ALClient.sendSms(sendSMSRequest)
-    return resp
+
+    const runtime = new RuntimeOptions({})
+
+    try {
+      const resp = await client.sendSmsVerifyCodeWithOptions(
+        sendSMSRequest,
+        runtime,
+      )
+      app.logger.info(resp)
+      return resp
+    } catch (error) {
+      console.error(error)
+    }
   }
   async loginByCellphone(cellphone: string) {
     const { ctx, app } = this

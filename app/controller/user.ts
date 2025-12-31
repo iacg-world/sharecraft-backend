@@ -58,12 +58,13 @@ export default class UserController extends Controller {
     // [0 - 9000) + 1000 = [1000, 10000)
     const veriCode = Math.floor(Math.random() * 9000 + 1000).toString()
     // 发送短信
-    // 判断是否为生产环境
-    if (app.config.env === 'prod') {
-      const resp = await this.service.user.sendSMS(phoneNumber, veriCode)
-      if (resp.body.code !== 'OK') {
-        return ctx.helper.error({ ctx, msg: resp.body.message, errorType: 'sendVeriCodeError' })
-      }
+    const resp = await this.service.user.sendSMS(phoneNumber, veriCode)
+    if (resp.body.code !== 'OK') {
+      return ctx.helper.error({
+        ctx,
+        msg: resp.body.message,
+        errorType: 'sendVeriCodeError',
+      })
     }
     console.log(app.config.aliCloudConfig)
     await app.redis.set(`phoneVeriCode-${phoneNumber}`, veriCode, 'ex', 60)
