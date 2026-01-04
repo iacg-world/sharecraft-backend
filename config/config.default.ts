@@ -1,4 +1,4 @@
-import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
+import type { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
 import * as dovenv from 'dotenv'
 import { join } from 'node:path'
 dovenv.config()
@@ -40,7 +40,21 @@ export default (appInfo: EggAppInfo) => {
       '/api/channel',
     ],
   }
-
+  config.mongoose = {
+    url: `mongodb://${process.env.DEV_HOST}:27016/craft`,
+    options: {
+      user: process.env.MONGO_DB_USERNAME,
+      pass: process.env.MONGO_DB_PASSWORD,
+    },
+  }
+  config.redis = {
+    client: {
+      port: 6377,
+      host: process.env.DEV_HOST || '127.0.0.1',
+      password: process.env.REDIS_PASSWORD,
+      db: 0,
+    },
+  }
   // config.cors = {
   //   allowMethods: 'GET,HEAD,PUT,OPTIONS,POST,DELETE,PATCH',
   //   allowHeaders: 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
